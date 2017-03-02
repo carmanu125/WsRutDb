@@ -18,6 +18,16 @@ namespace WebServicesRutDb
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                "Get6",
+                "api/values/6",
+                new
+                {
+                    controller = "Values",
+                    action = "Get6"
+                }
+            );
         }
     }
 }
