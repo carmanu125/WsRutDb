@@ -30,7 +30,7 @@ namespace WebServicesRutDb.Areas.api.Controllers
 
         // GET: /api/Places/Clientes/
         [HttpGet]
-        public JsonResult Clientes()
+        public JsonResult Places()
         {
 
             List<Places> lista = new List<Places>();

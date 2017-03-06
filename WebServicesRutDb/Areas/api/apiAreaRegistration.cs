@@ -21,9 +21,9 @@ namespace WebServicesRutDb.Areas.api
             );
 
             context.MapRoute(
-                "Clientes",
-                "api/Places/Clientes/",
-                new { action = "Clientes", id = UrlParameter.Optional }
+                "Places",
+                "api/Places/",
+                new { action = "Places", id = UrlParameter.Optional }
             );
         }
     }
