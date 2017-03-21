@@ -28,9 +28,9 @@ namespace WebServicesRutDb.Areas.api.Controllers
         }
 
 
-        // GET: /api/Places/Clientes/
+        // GET: /api/Places/Places/
         [HttpGet]
-        public JsonResult Clientes()
+        public JsonResult Places()
         {
 
             List<Places> lista = new List<Places>();
@@ -61,10 +61,6 @@ namespace WebServicesRutDb.Areas.api.Controllers
 
                 }
             }
-
-            
- 
-
 
             return Json(lista,
                         JsonRequestBehavior.AllowGet);
