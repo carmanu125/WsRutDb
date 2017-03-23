@@ -22,12 +22,14 @@ namespace WebServicesRutDb.Areas.api
 
             context.MapRoute(
                 "Places",
-<<<<<<< HEAD
                 "api/Places/Places/",
-=======
-                "api/Places/",
->>>>>>> ae5b44ec6392dcdbc7fb754c52fc58dd68057e9f
                 new { action = "Places", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "discountInMarker",
+                "api/Devices/discountInMarker/",
+                new { action = "discountInMarker", id = UrlParameter.Optional }
             );
         }
     }

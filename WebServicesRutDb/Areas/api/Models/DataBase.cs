@@ -87,9 +87,6 @@ namespace WebServicesRutDb.Models
                 int result = 0;
                 objCommand.Connection = objConnection.connectionDB;
                 objCommand.CommandText = sql;
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter();
 
                 if (objTran != null)
                 {
@@ -113,18 +110,7 @@ namespace WebServicesRutDb.Models
                 }
                 finally
                 {
-                    DataTable dterror;
-
-                    if (ds.Tables.Count > 1)
-                    {
-                        dterror = ds.Tables[1];
-                        DataRow row = dterror.Rows[0];
-                        int error = Convert.ToInt32(row["error_code"]);
-                        if (error > 0)
-                        {
-                            dt = dterror;
-                        }
-                    }
+                    
                     objConnection.CloseConnection();
                     objCommand.Dispose();
                 }
@@ -138,59 +124,71 @@ namespace WebServicesRutDb.Models
 
 
         }
-        /*
-        public SqlDataReader ConsultRow(string storeProcedureName, Parameters Parameters)
+       
+        public string ConsultString(string sql)
         {
+            objCommand.Connection = objConnection.connectionDB;
+            objCommand.CommandText = sql;
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            string result = "";
+
+            if (objTran != null)
+            {
+                objCommand.Transaction = objTran;
+            }
+
+            //objCommand.Parameters.Add("@option", SqlDbType.VarChar).Value = Option;
+            //objCommand.Parameters.Add("@error_Code", SqlDbType.Int).Direction = ParameterDirection.Output;
+            objConnection.OpenConnection();
+
             try
             {
-                SqlDataReader result = null;
-                objCommand.Connection = objConnection.connectionDB;
-                objCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                objCommand.CommandText = storeProcedureName;
-
-                if (objTran != null)
-                {
-                    objCommand.Transaction = objTran;
-                }
-
-                int numparams = 0;
-                if (Parameters != null)
-                {
-                    numparams = Parameters.Count;
-                }
-                for (int i = 1; i <= numparams; i++)
-                {
-                    objParameter = Parameters.Item(i);
-                    objCommand.Parameters.Add(objParameter.name, objParameter.type, objParameter.size).Value = objParameter.value;
-
-                }
-
-                //objCommand.Parameters.Add("@option", SqlDbType.VarChar).Value = Option;
-                //objCommand.Parameters.Add("@error_Code", SqlDbType.Int).Direction = ParameterDirection.Output;
-                objConnection.OpenConnection();
-
-                try
-                {
 
 
-                    result = objCommand.ExecuteReader();
-                    //objConnection.CloseConnection();
-                    //return dt;
-                }
-                catch (Exception ex)
-                {
-                    objConnection.CloseConnection();
-                    return result;
-                }
-                return result;
+                result = (String) objCommand.ExecuteScalar();
+                //objConnection.CloseConnection();
+                //return dt;
             }
             catch (Exception ex)
             {
-                //ManejoError.Muestra(ex.Message)
-                return null;
+                objConnection.CloseConnection();
+                return result;
+            }
+            return result;
+        }
+
+        public int ConsultInt(string sql)
+        {
+            objCommand.Connection = objConnection.connectionDB;
+            objCommand.CommandText = sql;
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            int result = 0;
+
+            if (objTran != null)
+            {
+                objCommand.Transaction = objTran;
             }
 
+            //objCommand.Parameters.Add("@option", SqlDbType.VarChar).Value = Option;
+            //objCommand.Parameters.Add("@error_Code", SqlDbType.Int).Direction = ParameterDirection.Output;
+            objConnection.OpenConnection();
 
-        }*/
+            try
+            {
+
+
+                result = (int)objCommand.ExecuteScalar();
+                //objConnection.CloseConnection();
+                //return dt;
+            }
+            catch (Exception ex)
+            {
+                objConnection.CloseConnection();
+                return result;
+            }
+            return result;
+        }
     }
 }

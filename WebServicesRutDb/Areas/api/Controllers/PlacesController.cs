@@ -48,14 +48,14 @@ namespace WebServicesRutDb.Areas.api.Controllers
                     Places place = new Places();
 
                     place.id = Convert.ToInt32(rw[0].ToString());
-                    place.name = rw[0].ToString();
-                    place.short_description = rw[0].ToString();
-                    place.description = rw[0].ToString();
-                    place.address = rw[0].ToString();
-                    place.phone = rw[0].ToString();
-                    place.email = rw[0].ToString();
-                    place.latLong = rw[0].ToString();
-                    place.Ranking = rw[0].ToString();
+                    place.name = rw[1].ToString();
+                    place.short_description = rw[2].ToString();
+                    place.description = rw[3].ToString();
+                    place.address = rw[4].ToString();
+                    place.phone = rw[5].ToString();
+                    place.email = rw[6].ToString();
+                    place.latLong = rw[7].ToString();
+                    place.Ranking = rw[8].ToString();
 
                     lista.Add(place);
 
@@ -65,5 +65,6 @@ namespace WebServicesRutDb.Areas.api.Controllers
             return Json(lista,
                         JsonRequestBehavior.AllowGet);
         }
+
     }
 }
