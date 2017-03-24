@@ -28,8 +28,13 @@ namespace WebServicesRutDb.Areas.api
 
             context.MapRoute(
                 "discountInMarker",
-                "api/Devices/discountInMarker/",
-                new { action = "discountInMarker", id = UrlParameter.Optional }
+                "api/Devices/discountInMarker/{id}",
+                new
+                {
+                    controller = "Devices",
+                    action = "discountInMarker",
+                    id = UrlParameter.Optional
+                }
             );
         }
     }

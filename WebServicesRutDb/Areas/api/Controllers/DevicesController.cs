@@ -64,7 +64,9 @@ namespace WebServicesRutDb.Areas.api.Controllers
 
                 int rows = dataBase.ExecuteSQL(query);
 
-                return Json(Convert.ToString((rows > 0)));
+                bool wasInserted = (rows > 0);
+
+                return Json(wasInserted.ToString());
 
             }
 
