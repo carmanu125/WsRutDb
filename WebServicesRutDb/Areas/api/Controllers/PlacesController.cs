@@ -56,6 +56,7 @@ namespace WebServicesRutDb.Areas.api.Controllers
                     place.email = rw[6].ToString();
                     place.latLong = rw[7].ToString();
                     place.Ranking = rw[8].ToString();
+                    place.Url_image = rw[9].ToString();
 
                     lista.Add(place);
 

@@ -16,5 +16,6 @@ namespace WebServicesRutDb.Models.Entity
         public string email { get; set; }
         public string latLong { get; set; }
         public string Ranking { get; set; }
+        public string Url_image { get; set; }
     }
 }
