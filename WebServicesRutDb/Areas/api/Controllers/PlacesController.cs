@@ -56,6 +56,9 @@ namespace WebServicesRutDb.Areas.api.Controllers
                     place.latLong = rw[7].ToString();
                     place.Ranking = rw[8].ToString();
                     place.Url_image = rw[9].ToString();
+                    place.facebook = rw[10].ToString();
+                    place.instagram = rw[11].ToString();
+                    place.twitter = rw[12].ToString();
 
                     lista.Add(place);
 
@@ -81,7 +84,6 @@ namespace WebServicesRutDb.Areas.api.Controllers
             {
                 foreach (DataRow rw in dt.Rows)
                 {
-
                     ImagePlaces image = new ImagePlaces();
 
                     image.id = Convert.ToInt32(rw[0].ToString());

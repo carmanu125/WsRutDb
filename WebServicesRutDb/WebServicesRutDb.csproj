@@ -149,8 +149,10 @@
     <Compile Include="Areas\api\apiAreaRegistration.cs" />
     <Compile Include="Areas\api\Controllers\DevicesController.cs" />
     <Compile Include="Areas\api\Controllers\PlacesController.cs" />
+    <Compile Include="Areas\api\Controllers\RankingController.cs" />
     <Compile Include="Areas\api\Models\Entity\Devices.cs" />
     <Compile Include="Areas\api\Models\Entity\ImagePlaces.cs" />
+    <Compile Include="Areas\api\Models\Entity\Ranking.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

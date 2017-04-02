@@ -47,6 +47,17 @@ namespace WebServicesRutDb.Areas.api
                     id = UrlParameter.Optional
                 }
             );
+
+            context.MapRoute(
+                "RankingPlace",
+                "api/Ranking/RankingPlace/{id}",
+                new
+                {
+                    controller = "Ranking",
+                    action = "RankingPlace",
+                    id = UrlParameter.Optional
+                }
+            );
         }
     }
 }
