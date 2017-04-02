@@ -36,6 +36,17 @@ namespace WebServicesRutDb.Areas.api
                     id = UrlParameter.Optional
                 }
             );
+
+            context.MapRoute(
+                "ImagesPlaces",
+                "api/Places/ImagesPlaces/{id}",
+                new
+                {
+                    controller = "Places",
+                    action = "ImagesPlaces",
+                    id = UrlParameter.Optional
+                }
+            );
         }
     }
 }

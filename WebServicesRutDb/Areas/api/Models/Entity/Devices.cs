@@ -7,7 +7,7 @@ namespace WebServicesRutDb.Areas.api.Models.Entity
 {
     public class Devices
     {
-        public int id { get; set; }
+        public int id_Device { get; set; }
         public string imei { get; set; }
         public string brand{ get ; set ; }
         public string device{ get ; set ; }

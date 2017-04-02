@@ -30,16 +30,18 @@ namespace WebServicesRutDb.Areas.api.Controllers
         }
 
         [HttpPost]
-        public JsonResult discountInMarker(Devices device)
+        public JsonResult discountInMarker(int? id, Devices device)
         {
 
             string sql = "SELECT Id FROM Devices where Imei =  '" + device.imei + "'";
+            bool hasDiscount = false;
 
             int result = dataBase.ConsultInt(sql);
+            device.id_Device = result;
 
             if (result > 0)
             {
-                return Json("Error");
+                //return Json("Error");
             }
             else
             {
@@ -64,11 +66,41 @@ namespace WebServicesRutDb.Areas.api.Controllers
 
                 int rows = dataBase.ExecuteSQL(query);
 
-                bool wasInserted = (rows > 0);
+                string sqlID = "SELECT Id FROM Devices where Imei =  '" + device.imei + "'";
+                int resultID = dataBase.ConsultInt(sqlID);
+                device.id_Device = resultID;
 
-                return Json(wasInserted.ToString());
+                //bool wasInserted = (rows > 0);
+
 
             }
+
+            hasDiscount = checkDiscount(device, id.GetValueOrDefault());
+
+            return Json(hasDiscount.ToString());
+
+
+        }
+
+        private bool checkDiscount(Devices device, int idPlace){
+
+            string sql = "SELECT ID,Id_Place,Id_Device FROM Discount_Places WHERE Id_Place = " + idPlace + " AND Id_Device = " + device.id_Device;
+            
+            int idDiscount = dataBase.ConsultInt(sql);
+
+            // No existen registros para ese local
+            if (!(idDiscount > 0))
+            {
+
+                string query = "INSERT INTO Discount_Places (Id_Place,Id_Device) values (" + idPlace + "," + device.id_Device + ")";
+
+                int rows = dataBase.ExecuteSQL(query);
+
+                return true;
+            }
+           
+            // ya se reclamo el descuento
+            return false;
 
         }
 

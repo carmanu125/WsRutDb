@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebServicesRutDb.Areas.api.Models.Entity;
 using WebServicesRutDb.Models;
 using WebServicesRutDb.Models.Entity;
 
@@ -35,8 +36,6 @@ namespace WebServicesRutDb.Areas.api.Controllers
 
             List<Places> lista = new List<Places>();
 
-           
-
             string sql = "SELECT * FROM Places";
 
             DataTable dt = dataBase.ConsultSQL(sql);
@@ -60,6 +59,36 @@ namespace WebServicesRutDb.Areas.api.Controllers
 
                     lista.Add(place);
 
+                }
+            }
+
+            return Json(lista,
+                        JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: /api/Places/ImagesPlaces/
+        [HttpGet]
+        public JsonResult ImagesPlaces(int? id)
+        {
+
+            List<ImagePlaces> lista = new List<ImagePlaces>();
+
+            string sql = "SELECT Id,Url,Id_Place FROM Places_Image WHERE Id_Place = " + id.GetValueOrDefault();
+
+            DataTable dt = dataBase.ConsultSQL(sql);
+
+            if (dt.Columns.Count > 0)
+            {
+                foreach (DataRow rw in dt.Rows)
+                {
+
+                    ImagePlaces image = new ImagePlaces();
+
+                    image.id = Convert.ToInt32(rw[0].ToString());
+                    image.url = rw[1].ToString();
+                    image.id_Place = Convert.ToInt32(rw[2].ToString());
+
+                    lista.Add(image);
                 }
             }
 
