@@ -205,3 +205,5 @@ C:\ProyectosVisual\git\Github\WsBordado\WebServicesRutDb\bin\zh-Hant\System.Spat
 C:\ProyectosVisual\git\Github\WsBordado\WebServicesRutDb\obj\Release\WebServicesRutDb.csprojResolveAssemblyReference.cache
 C:\ProyectosVisual\git\Github\WsBordado\WebServicesRutDb\obj\Release\WebServicesRutDb.dll
 C:\ProyectosVisual\git\Github\WsBordado\WebServicesRutDb\obj\Release\WebServicesRutDb.pdb
+E:\CarlosNunez\carlos\WebServicesRutDb\WebServicesRutDb\bin\Dropbox.Api.dll
+E:\CarlosNunez\carlos\WebServicesRutDb\WebServicesRutDb\bin\Dropbox.Api.xml

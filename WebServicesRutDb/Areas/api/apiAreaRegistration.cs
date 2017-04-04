@@ -48,6 +48,17 @@ namespace WebServicesRutDb.Areas.api
                 }
             );
 
+            /*context.MapRoute(
+                "ImagesPlacesDropBox",
+                "api/Places/ImagesPlacesDropBox/{id}",
+                new
+                {
+                    controller = "Places",
+                    action = "ImagesPlaces",
+                    id = UrlParameter.Optional
+                }
+            );*/
+
             context.MapRoute(
                 "RankingPlace",
                 "api/Ranking/RankingPlace/{id}",

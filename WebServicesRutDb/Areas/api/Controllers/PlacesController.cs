@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using WebServicesRutDb.Areas.api.Models;
 using WebServicesRutDb.Areas.api.Models.Entity;
 using WebServicesRutDb.Models;
 using WebServicesRutDb.Models.Entity;
@@ -55,10 +57,11 @@ namespace WebServicesRutDb.Areas.api.Controllers
                     place.email = rw[6].ToString();
                     place.latLong = rw[7].ToString();
                     place.Ranking = rw[8].ToString();
-                    place.Url_image = rw[9].ToString();
+                    place.Url_image = getUrlImage(place.id);
                     place.facebook = rw[10].ToString();
                     place.instagram = rw[11].ToString();
                     place.twitter = rw[12].ToString();
+                    place.Url_logo = getUrlLogo(place.id);
 
                     lista.Add(place);
 
@@ -69,8 +72,29 @@ namespace WebServicesRutDb.Areas.api.Controllers
                         JsonRequestBehavior.AllowGet);
         }
 
+        private string getUrlLogo(int id)
+        {
+
+            string value = "";
+            Task<string> task = CDropBox.ImageBanner(value, id);
+            task.Wait();
+            value = task.Result;
+
+            return value;
+        }
+
+        private string getUrlImage(int id)
+        {
+            string value = "";
+            Task<string> task = CDropBox.ImageLogo(value, id);
+            task.Wait();
+            value = task.Result;
+
+            return value;
+        }
+
         // GET: /api/Places/ImagesPlaces/
-        [HttpGet]
+        /*[HttpGet]
         public JsonResult ImagesPlaces(int? id)
         {
 
@@ -93,6 +117,34 @@ namespace WebServicesRutDb.Areas.api.Controllers
                     lista.Add(image);
                 }
             }
+
+            return Json(lista,
+                        JsonRequestBehavior.AllowGet);
+        }*/
+
+        [HttpGet]
+        public JsonResult ImagesPlaces(int? id)
+        {
+
+            List<ImagePlaces> lista = new List<ImagePlaces>();
+
+            List<string> listImage = new List<string>();
+
+            Task<List<string>> task = CDropBox.ListFolderTree(listImage, id.GetValueOrDefault());
+            task.Wait();
+
+
+             foreach (string value in listImage)
+                {
+                    ImagePlaces image = new ImagePlaces();
+
+                    //image.id = Convert.ToInt32(rw[0].ToString());
+                    image.url = value;
+                    //image.id_Place = Convert.ToInt32(rw[2].ToString());
+
+                    lista.Add(image);
+                }
+            
 
             return Json(lista,
                         JsonRequestBehavior.AllowGet);

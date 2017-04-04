@@ -20,6 +20,7 @@ namespace WebServicesRutDb.Models.Entity
         public string facebook { get; set; }
         public string instagram { get; set; }
         public string twitter { get; set; }
+        public string Url_logo { get; set; }
 
     }
 }
